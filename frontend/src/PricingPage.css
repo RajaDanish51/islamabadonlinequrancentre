@@ -1,0 +1,328 @@
+/* ==========================================
+   COMMON
+========================================== */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--red);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.eyebrow-center {
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* ==========================================
+   HERO
+========================================== */
+
+.pricing-hero {
+  padding: 20px 0;
+  padding-top: 60px;
+  text-align: center;
+}
+
+.pricing-hero-inner h1 {
+  font-size: 2.1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.pricing-hero-inner p {
+  font-size: 0.95rem;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* ==========================================
+   SECTION
+========================================== */
+
+.pricing-section {
+  padding: 40px 0;
+}
+
+.pricing-layout {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* ==========================================
+   PRICING CARDS
+========================================== */
+
+.pricing-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.pricing-card {
+  position: relative;
+  background: var(--white);
+  border: 1.5px solid #bebebe;
+  border-radius: var(--radius-md);
+  padding: 34px 28px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-4px);
+}
+
+.pricing-card.popular {
+  border-color: var(--red);
+  box-shadow: var(--shadow);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -14px;
+  right: 24px;
+  background: var(--red);
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 50px;
+}
+
+.pricing-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 22px;
+}
+
+.price .amount {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--red);
+}
+
+.price .period {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+}
+
+.plan-features {
+  margin-bottom: 26px;
+  flex-grow: 1;
+}
+
+.plan-features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: var(--gray-700);
+  margin-bottom: 12px;
+}
+
+.plan-features li svg {
+  color: var(--red);
+  flex-shrink: 0;
+}
+
+.btn.full {
+  width: 100%;
+  justify-content: center;
+  margin-top: auto;
+  cursor: pointer;
+}
+
+/* ==========================================
+   SIDEBAR
+========================================== */
+
+.pricing-sidebar {
+  background: var(--gray-100);
+  border-radius: var(--radius-md);
+  padding: 28px 24px;
+}
+
+.pricing-sidebar h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.pricing-sidebar ul li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.88rem;
+  color: var(--gray-700);
+  margin-bottom: 18px;
+}
+
+.why-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: var(--red-light);
+  color: var(--red);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+/* ==========================================
+   PAYMENT METHODS
+========================================== */
+
+.payment-strip {
+  margin-top: 45px;
+  padding: 28px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  text-align: center;
+  background: var(--white);
+}
+
+.payment-label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--red);
+  margin-bottom: 22px;
+}
+
+.payment-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.payment-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 120px;
+  height: 95px;
+
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+
+  background: var(--white);
+
+  transition: all 0.3s ease;
+}
+
+.payment-pill:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow);
+}
+
+.payment-logo {
+  width: 60px;
+  height: 40px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.payment-pill span {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gray-700);
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1024px) {
+
+  .pricing-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+@media (max-width: 900px) {
+
+  .payment-pill {
+    width: 110px;
+    height: 90px;
+  }
+
+  .payment-logo {
+    width: 55px;
+    height: 36px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .pricing-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-hero-inner h1 {
+    font-size: 1.7rem;
+  }
+
+  .payment-logos {
+    gap: 14px;
+  }
+
+  .payment-pill {
+    width: 100px;
+    height: 85px;
+  }
+
+  .payment-logo {
+    width: 50px;
+    height: 34px;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .payment-pill {
+    width: 90px;
+    height: 80px;
+  }
+
+  .payment-logo {
+    width: 45px;
+    height: 30px;
+  }
+
+  .payment-pill span {
+    font-size: 0.75rem;
+  }
+
+}

@@ -1,0 +1,181 @@
+/* ---------------------------------- HEADER ---------------------------------- */
+.navbar {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  position: relative; /* anchors the mobile dropdown */
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+.logo-img {
+  width: 100%;
+  height: 120%;
+  object-fit: contain;
+  border: none;
+  display: block;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+  color: var(--black);
+}
+.logo-text small {
+  font-weight: 600;
+  font-size: 0.55rem;
+  letter-spacing: 1px;
+  color: var(--red);
+}
+
+/* Desktop: nav-panel is just a flex row containing links + actions */
+.nav-panel {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-left: 40px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+}
+.nav-links a {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--gray-900);
+  position: relative;
+  padding-bottom: 6px;
+}
+.nav-links a.active {
+  color: var(--red);
+}
+.nav-links a.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--red);
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.navbar-actions .btn { padding: 10px 22px; }
+
+/* WhatsApp button */
+.btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #25d366;
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.95rem;
+  line-height: 1;
+  transition: background-color 0.2s ease;
+}
+.btn-whatsapp svg {
+  display: block;
+  flex-shrink: 0;
+}
+.btn-whatsapp:hover {
+  background-color: #1ebe5b;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: transparent;
+  padding: 6px;
+}
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  background: var(--black);
+}
+
+@media (max-width: 768px) {
+  /* Panel becomes a dropdown card anchored to the top-right corner */
+  .nav-panel {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 16px;
+    left: auto;
+    margin-left: 0;
+    width: 240px;
+    max-width: calc(100vw - 32px);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-md, 10px);
+    box-shadow: var(--shadow, 0 10px 30px rgba(0, 0, 0, 0.12));
+    padding: 18px;
+    z-index: 50;
+  }
+  .nav-panel.open {
+    display: flex;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .navbar-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .navbar-actions .btn {
+    justify-content: center;
+    width: 100%;
+  }
+  .btn-whatsapp-text {
+    display: inline; /* show full "WhatsApp" label inside the dropdown, room is fine here */
+  }
+
+  .hamburger { display: flex; }
+}

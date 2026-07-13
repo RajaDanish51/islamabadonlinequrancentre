@@ -1,0 +1,89 @@
+:root {
+  --red: #C8102E;
+  --red-dark: #a50d26;
+  --red-light: #fdecef;
+  --black: #1a1a1a;
+  --gray-900: #222222;
+  --gray-700: #555555;
+  --gray-500: #7a7a7a;
+  --gray-200: #ececec;
+  --gray-100: #f7f7f8;
+  --cream: #fffaf7;
+  --white: #ffffff;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Poppins", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--gray-900);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  margin: 0;
+  color: var(--black);
+  line-height: 1.2;
+}
+
+p { margin: 0; color: var(--gray-700); }
+ul { list-style: none; padding: 0; margin: 0; }
+a { text-decoration: none; color: inherit; }
+button { font-family: var(--font-body); cursor: pointer; border: none; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.text-accent { color: var(--red); }
+
+/* Buttons (shared across all pages) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+.btn-primary { background: var(--red); color: var(--white); }
+.btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); }
+.btn-outline { background: transparent; color: var(--red); border: 1.5px solid var(--red); }
+.btn-outline:hover { background: var(--red-light); }
+.btn-white { background: var(--white); color: var(--red); }
+.btn-white:hover { transform: translateY(-2px); }
+
+/* Breadcrumb (shared across all inner pages) */
+.breadcrumb {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--gray-200);
+}
+.breadcrumb-inner {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--gray-500);
+}
+.breadcrumb-inner a { color: var(--gray-500); }
+.breadcrumb-inner a:hover { color: var(--red); }
+.breadcrumb-inner .current { color: var(--red); font-weight: 500; }
+.breadcrumb-inner svg { color: var(--gray-500); }
+
+html {
+  scroll-behavior: smooth;
+}
