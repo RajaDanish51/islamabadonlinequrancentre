@@ -506,6 +506,12 @@
   .hero-inner { grid-template-columns: 1fr; }
   .hero-media { margin-top: 40px; }
   .floating-stats { position: static; margin-top: 20px; flex-direction: row; flex-wrap: wrap; }
+  .hero-photo {
+    margin-right: 0;
+    width: 100%;
+    max-width: 420px;
+    height: 380px;
+  }
   .about-inner { grid-template-columns: 1fr; }
   .testimonials-grid { grid-template-columns: 1fr; }
   .stats-card { grid-template-columns: repeat(2, 1fr); }
@@ -513,8 +519,18 @@
 
 @media (max-width: 768px) {
   .hero-content h1 { font-size: 2.1rem; }
+  .hero-photo {
+    max-width: 100%;
+    height: 340px;
+  }
   .features-grid { grid-template-columns: repeat(2, 1fr); }
   .home-courses-grid { grid-template-columns: 1fr; }
   .cta-inner { flex-direction: column; text-align: center; }
   .cta-inner > div:first-child p { margin-left: auto; margin-right: auto; }
+}
+
+@media (max-width: 480px) {
+  .hero-photo {
+    height: 280px;
+  }
 }
