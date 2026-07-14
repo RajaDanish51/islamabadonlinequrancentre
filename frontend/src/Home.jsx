@@ -199,7 +199,7 @@ function Hero() {
               <span className="mini-avatar">D</span>
             </div>
             <div>
-              <strong>3K+ Happy Students</strong>
+              <strong>355+ Happy Students</strong>
               <p>
                 from <span className="text-accent">15+ Countries</span>
               </p>
