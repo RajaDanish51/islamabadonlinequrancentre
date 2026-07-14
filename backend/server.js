@@ -28,6 +28,12 @@ app.get("/", (req, res) => {
 // Email Transporter
 // ================================
 
+console.log("=== SMTP CONFIG ===");
+console.log("Host:", "smtp.gmail.com");
+console.log("Port:", 587);
+console.log("Secure:", false);
+
+
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 587,
