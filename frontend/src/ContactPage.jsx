@@ -90,17 +90,17 @@ export default function ContactPage() {
 
     const message = `*📚 New Student Registration*
 
-      👤 *Student Name:* ${form.studentName}
+      *Student Name:* ${form.studentName}
 
-       🎂 *Age:* ${form.age}
+      *Age:* ${form.age}
 
-      📱 *WhatsApp:* ${form.whatsappNumber}
+      *WhatsApp:* ${form.whatsappNumber}
 
-       🌍 *Country:* ${form.country}
+      *Country:* ${form.country}
 
-      📖 *Course:* ${form.subject}
+      *Course:* ${form.subject}
 
-       📝 *Message:*
+      *Message:*
       ${form.message || "No message provided."}
       Islamabad Online Quran Academy
 `;
