@@ -21,32 +21,30 @@ app.get("/", (req, res) => {
 });
 
 // ================================
-// Email Transporter
+// SMTP Configuration
 // ================================
 
-// ================================
-// Email Transporter
-// ================================
+console.log("========== BREVO SMTP ==========");
+console.log("SMTP HOST:", process.env.SMTP_HOST);
+console.log("SMTP PORT:", process.env.SMTP_PORT);
+console.log("SMTP USER:", process.env.SMTP_USER);
+console.log("EMAIL FROM:", process.env.EMAIL_FROM);
 
-console.log("=== SMTP CONFIG ===");
-console.log("Host:", "smtp.gmail.com");
-console.log("Port:", 587);
-console.log("Secure:", false);
-
+// ================================
+// Email Transporter (Brevo)
+// ================================
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
+  host: process.env.SMTP_HOST,
+  port: Number(process.env.SMTP_PORT),
   secure: false,
-  requireTLS: true,
-  family: 4, // Force IPv4
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
   },
 });
 
-// Verify SMTP connection on server startup
+// Verify SMTP connection
 transporter.verify((error, success) => {
   if (error) {
     console.error("❌ SMTP Verification Failed");
@@ -61,7 +59,6 @@ transporter.verify((error, success) => {
 // ================================
 
 app.post("/api/contact", async (req, res) => {
-
   try {
     const {
       studentName,
@@ -86,10 +83,13 @@ app.post("/api/contact", async (req, res) => {
       });
     }
 
+    // ================================
     // Email Options
+    // ================================
+
     const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
+      from: `"Islamabad Online Quran Academy" <${process.env.EMAIL_FROM}>`,
+      to: process.env.EMAIL_FROM,
 
       subject: `📩 New Quran Registration - ${subject}`,
 
@@ -139,7 +139,7 @@ app.post("/api/contact", async (req, res) => {
 
         <small>
           This registration was submitted from the
-          <strong>Islamabad Quran Academy Website</strong>.
+          <strong>Islamabad Online Quran Academy Website</strong>.
         </small>
 
       </div>
@@ -154,14 +154,16 @@ app.post("/api/contact", async (req, res) => {
     });
 
   } catch (error) {
-  console.error("========== EMAIL ERROR ==========");
-  console.error(error);
 
-  res.status(500).json({
-    success: false,
-    message: error.message,
-  });
-}
+    console.error("========== EMAIL ERROR ==========");
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+
+  }
 });
 
 // ================================
