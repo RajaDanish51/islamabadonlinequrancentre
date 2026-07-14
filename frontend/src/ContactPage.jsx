@@ -60,6 +60,8 @@ export default function ContactPage() {
     message: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (e) =>
     setForm((prev) => ({
       ...prev,
@@ -69,11 +71,15 @@ export default function ContactPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (isSubmitting) return;
+
     // Clear previous message
     setStatus({
       type: "",
       message: "",
     });
+
+    setIsSubmitting(true);
 
     try {
       const API_URL =
@@ -116,6 +122,8 @@ export default function ContactPage() {
         type: "error",
         message: "Unable to submit registration. Please try again.",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -205,6 +213,7 @@ export default function ContactPage() {
                   value={form.studentName}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -223,6 +232,7 @@ export default function ContactPage() {
                   value={form.age}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -243,6 +253,7 @@ export default function ContactPage() {
                   value={form.whatsappNumber}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -259,6 +270,7 @@ export default function ContactPage() {
                   value={form.country}
                   onChange={handleChange}
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -276,6 +288,7 @@ export default function ContactPage() {
                 value={form.subject}
                 onChange={handleChange}
                 required
+                disabled={isSubmitting}
               >
                 <option value="">
                   Select Subject
@@ -307,6 +320,7 @@ export default function ContactPage() {
                 placeholder="Write your message..."
                 value={form.message}
                 onChange={handleChange}
+                disabled={isSubmitting}
               />
 
             </div>
@@ -324,12 +338,19 @@ export default function ContactPage() {
             <button
               type="submit"
               className="btn btn-primary"
+              disabled={isSubmitting}
             >
-              Register Now
-              <SendIcon
-                width={16}
-                height={16}
-              />
+              {isSubmitting ? (
+                <>
+                  <span className="btn-spinner" />
+                  Submitting...
+                </>
+              ) : (
+                <>
+                  Register Now
+                  <SendIcon width={16} height={16} />
+                </>
+              )}
             </button>
 
           </form>
