@@ -24,12 +24,31 @@ app.get("/", (req, res) => {
 // Email Transporter
 // ================================
 
+// ================================
+// Email Transporter
+// ================================
+
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true, // SSL
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  connectionTimeout: 30000,
+  greetingTimeout: 30000,
+  socketTimeout: 30000,
+});
+
+// Verify SMTP connection on server startup
+transporter.verify((error, success) => {
+  if (error) {
+    console.error("❌ SMTP Verification Failed");
+    console.error(error);
+  } else {
+    console.log("✅ SMTP Server is Ready");
+  }
 });
 
 // ================================
@@ -130,13 +149,14 @@ app.post("/api/contact", async (req, res) => {
     });
 
   } catch (error) {
-    console.error("Email Error:", error);
+  console.error("========== EMAIL ERROR ==========");
+  console.error(error);
 
-    res.status(500).json({
-      success: false,
-      message: "Failed to submit registration.",
-    });
-  }
+  res.status(500).json({
+    success: false,
+    message: error.message,
+  });
+}
 });
 
 // ================================
