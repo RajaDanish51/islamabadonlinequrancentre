@@ -60,71 +60,72 @@ export default function ContactPage() {
     message: "",
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   const handleChange = (e) =>
     setForm((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
     }));
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (isSubmitting) return;
-
-    // Clear previous message
     setStatus({
       type: "",
       message: "",
     });
 
-    setIsSubmitting(true);
-
-    try {
-      const API_URL =
-        import.meta.env.VITE_API_URL || "http://localhost:5000";
-
-      const response = await fetch(`${API_URL}/api/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setStatus({
-          type: "success",
-          message: "Registration submitted successfully!",
-        });
-
-        setForm({
-          studentName: "",
-          age: "",
-          whatsappNumber: "",
-          country: "",
-          subject: "",
-          message: "",
-        });
-      } else {
-        setStatus({
-          type: "error",
-          message: data.message || "Registration could not be submitted.",
-        });
-      }
-    } catch (error) {
-      console.error(error);
-
+    if (
+      !form.studentName ||
+      !form.age ||
+      !form.whatsappNumber ||
+      !form.country ||
+      !form.subject
+    ) {
       setStatus({
         type: "error",
-        message: "Unable to submit registration. Please try again.",
+        message: "Please fill all required fields.",
       });
-    } finally {
-      setIsSubmitting(false);
+      return;
     }
+
+    const message = `*📚 New Student Registration*
+
+👤 *Student Name:* ${form.studentName}
+
+🎂 *Age:* ${form.age}
+
+📱 *WhatsApp:* ${form.whatsappNumber}
+
+🌍 *Country:* ${form.country}
+
+📖 *Course:* ${form.subject}
+
+📝 *Message:*
+${form.message || "No message provided."}
+
+—————————————
+Islamabad Online Quran Academy
+`;
+
+    const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+      message
+    )}`;
+
+    window.open(whatsappURL, "_blank");
+
+    setStatus({
+      type: "success",
+      message: "Redirecting to WhatsApp...",
+    });
+
+    setForm({
+      studentName: "",
+      age: "",
+      whatsappNumber: "",
+      country: "",
+      subject: "",
+      message: "",
+    });
   };
 
   return (
@@ -213,7 +214,6 @@ export default function ContactPage() {
                   value={form.studentName}
                   onChange={handleChange}
                   required
-                  disabled={isSubmitting}
                 />
               </div>
 
@@ -232,7 +232,6 @@ export default function ContactPage() {
                   value={form.age}
                   onChange={handleChange}
                   required
-                  disabled={isSubmitting}
                 />
               </div>
 
@@ -253,7 +252,6 @@ export default function ContactPage() {
                   value={form.whatsappNumber}
                   onChange={handleChange}
                   required
-                  disabled={isSubmitting}
                 />
               </div>
 
@@ -270,7 +268,6 @@ export default function ContactPage() {
                   value={form.country}
                   onChange={handleChange}
                   required
-                  disabled={isSubmitting}
                 />
               </div>
 
@@ -288,7 +285,6 @@ export default function ContactPage() {
                 value={form.subject}
                 onChange={handleChange}
                 required
-                disabled={isSubmitting}
               >
                 <option value="">
                   Select Subject
@@ -320,7 +316,6 @@ export default function ContactPage() {
                 placeholder="Write your message..."
                 value={form.message}
                 onChange={handleChange}
-                disabled={isSubmitting}
               />
 
             </div>
@@ -338,19 +333,9 @@ export default function ContactPage() {
             <button
               type="submit"
               className="btn btn-primary"
-              disabled={isSubmitting}
             >
-              {isSubmitting ? (
-                <>
-                  <span className="btn-spinner" />
-                  Submitting...
-                </>
-              ) : (
-                <>
-                  Register Now
-                  <SendIcon width={16} height={16} />
-                </>
-              )}
+              Register Now
+              <SendIcon width={16} height={16} />
             </button>
 
           </form>
