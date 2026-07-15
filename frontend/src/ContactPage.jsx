@@ -88,7 +88,7 @@ export default function ContactPage() {
       return;
     }
 
-    const message = `*📚 New Student Registration*
+    const message = `*New Student Registration*
 
       *Student Name:* ${form.studentName}
 
@@ -112,8 +112,8 @@ export default function ContactPage() {
     window.open(whatsappURL, "_blank");
 
     setStatus({
-      type: "success",
-      message: "Redirecting to WhatsApp...",
+      type: "",
+      message: "",
     });
 
     setForm({
